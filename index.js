@@ -30,7 +30,8 @@ client.login(BOT_TOKEN);
 
 // ── Endpoint principal ────────────────────────────────────────
 app.post('/assign-role', async (req, res) => {
-  const { discord_id, package_id, access_token, secret } = req.body;
+  const { discord_id, access_token, secret } = req.body;
+const package_id = parseInt(req.body.package_id);
 
   if (secret !== API_SECRET) return res.status(401).json({ error: 'No autorizado' });
   if (!discord_id || !package_id) return res.status(400).json({ error: 'Faltan datos' });
